@@ -104,11 +104,16 @@
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 4px 16px;
-    font-size: 16px;
+    font-size: 12px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent-orange);
+    color: #88AACC;
     margin-bottom: 28px;
+  }
+  .home-date-label:hover {
+    color: var(--accent-orange-hover);
+    border-color: var(--accent-orange-hover);
+    transition: color 0.2s, border-color 0.2s;
   }
   .home-date-label .day-dot {
     width: 6px; height: 6px;
@@ -984,7 +989,7 @@
   const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
   const now = new Date();
-  const dayOfWeek = now.getDay(); // 0=Sun, 1=Mon, ..., 6=Sat
+  const dayOfWeek = now.getDay();
   const dayName = DAYS[dayOfWeek];
   const monthName = MONTHS[now.getMonth()];
   const dateNum = now.getDate();
@@ -1034,9 +1039,13 @@
 
   // ===== RENDER HOME =====
   function renderHome() {
-    const fullDate = `${dayName}, ${monthName} ${dateNum}, ${year}`;
+    const _now = new Date();
+    const _dayName = DAYS[_now.getDay()];
+    const _monthName = MONTHS[_now.getMonth()];
+    const _dateNum = _now.getDate();
+    const _year = _now.getFullYear();
+    const fullDate = `${_dayName}, ${_monthName} ${_dateNum}, ${_year}`;
     document.getElementById('home-full-date').textContent = fullDate;
-    document.getElementById('topbar-date').textContent = fullDate;
 
     const grid = document.getElementById('mysteries-grid');
     grid.innerHTML = '';
